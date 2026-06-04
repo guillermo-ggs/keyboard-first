@@ -1,7 +1,7 @@
 # tmuxinator layout: parallel Claude Code instances (HANDOFF §4.3)
 # Run with: tmuxinator start cc
 name: cc
-root: ~/work
+root: ~/dev
 windows:
   - claude:
       layout: tiled

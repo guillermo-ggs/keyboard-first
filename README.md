@@ -27,9 +27,9 @@ is Raycast / ⌘Tab / `aerospace` CLI, contingency in `karabiner/`).
 | Phase | What | Status |
 |-------|------|--------|
 | 0 | Repo scaffold, install script | ✅ done (2026-06-04) |
-| 1 | AeroSpace (window layer) | 🔶 nearly done — running with Accessibility; config loaded (modes main/move/resize); all 4 bundle IDs + workspace assignments verified via CLI (2026-06-04). Remaining: physical Hyper-chord test, float-rule tuning as needed |
-| 2 | tmux (in-window layer) | 🔶 installed + linked; remaining: tpm plugins (prefix+I), verify §4.4 |
-| 3 | In-app layer (Slack / IntelliJ / Chrome) | ⬜ |
+| 1 | AeroSpace (window layer) | ✅ done (2026-06-04) — §5.4 criteria pass; Hyper chords owner-confirmed; workspace assignments live. IntelliJ dialog float rules: add when one annoys (wait-and-see) |
+| 2 | tmux (in-window layer) | ✅ done (2026-06-04) — §4.4 criteria pass: config + plugins load, `deploy` (3 named panes) and `cc` (2 live CC instances, TUI renders correctly) reproduce detached, sessions independent of clients |
+| 3 | In-app layer (Slack / IntelliJ / Chrome) | ⬜ next — adopt Slack shortcuts, IdeaVim, resolve Chrome nav (8.5) |
 | 4 | Enthium learning (parallel track) | ⬜ start drills anytime |
 | 5 | Glue + refinement (Moonlander layers, Raycast) | ⬜ |
 

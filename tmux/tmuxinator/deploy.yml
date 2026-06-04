@@ -1,7 +1,7 @@
 # tmuxinator layout: deployment workflow (HANDOFF §4.3)
 # Run with: tmuxinator start deploy
 name: deploy
-root: ~/work
+root: ~/dev
 windows:
   - main:
       layout: main-vertical
