@@ -9,6 +9,11 @@
 # Hyper already contains Shift, so the i3-style "mod-shift-X = move" pattern is
 # impossible. Moving windows lives in a dedicated 'move' mode instead: hyper-m,
 # then h/j/k/l to nudge, 1-5 to send to a workspace, esc/enter to leave.
+#
+# Chords are written out as ctrl-alt-shift-cmd-X on purpose: the key-mapping
+# alias (hyper = 'ctrl-alt-shift-cmd') is NOT supported in 0.20.3-Beta
+# (verified via `aerospace reload-config --dry-run`, 2026-06-04). Re-try the
+# alias after the next AeroSpace upgrade.
 
 start-at-login = true
 

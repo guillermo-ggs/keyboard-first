@@ -27,7 +27,7 @@ is Raycast / ⌘Tab / `aerospace` CLI, contingency in `karabiner/`).
 | Phase | What | Status |
 |-------|------|--------|
 | 0 | Repo scaffold, install script | ✅ done (2026-06-04) |
-| 1 | AeroSpace (window layer) | 🔶 in progress — Hyper key flashed, install done (2026-06-04); remaining: launch + grant Accessibility, verify §5.4 |
+| 1 | AeroSpace (window layer) | 🔶 nearly done — running with Accessibility; config loaded (modes main/move/resize); all 4 bundle IDs + workspace assignments verified via CLI (2026-06-04). Remaining: physical Hyper-chord test, float-rule tuning as needed |
 | 2 | tmux (in-window layer) | 🔶 installed + linked; remaining: tpm plugins (prefix+I), verify §4.4 |
 | 3 | In-app layer (Slack / IntelliJ / Chrome) | ⬜ |
 | 4 | Enthium learning (parallel track) | ⬜ start drills anytime |
