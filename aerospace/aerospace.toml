@@ -1,0 +1,101 @@
+# AeroSpace — window layer (HANDOFF §5)
+#
+# Mod key: Hyper = ctrl-alt-shift-cmd (decision 8.6, resolved 2026-06-04).
+#   - Built-in keyboard emits Hyper via Karabiner: hold Caps Lock (karabiner/hyper.json).
+#   - Moonlander: dedicate a thumb key to Hyper in Oryx (built-in Hyper keycode).
+#
+# Hyper already contains Shift, so the i3-style "mod-shift-X = move" pattern is
+# impossible. Moving windows lives in a dedicated 'move' mode instead: hyper-m,
+# then h/j/k/l to nudge, 1-5 to send to a workspace, esc/enter to leave.
+
+start-at-login = true
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+[gaps]
+inner.horizontal = 8
+inner.vertical = 8
+outer.left = 8
+outer.right = 8
+outer.top = 8
+outer.bottom = 8
+
+[mode.main.binding]
+# Focus (vim-style)
+ctrl-alt-shift-cmd-h = 'focus left'
+ctrl-alt-shift-cmd-j = 'focus down'
+ctrl-alt-shift-cmd-k = 'focus up'
+ctrl-alt-shift-cmd-l = 'focus right'
+
+# Layouts
+ctrl-alt-shift-cmd-slash = 'layout tiles horizontal vertical'
+ctrl-alt-shift-cmd-comma = 'layout accordion horizontal vertical'
+
+# Switch workspace (scheme per decision 8.3 — numbered, iterate as needed)
+ctrl-alt-shift-cmd-1 = 'workspace 1'   # terminal (iTerm2 + tmux)
+ctrl-alt-shift-cmd-2 = 'workspace 2'   # chrome
+ctrl-alt-shift-cmd-3 = 'workspace 3'   # slack
+ctrl-alt-shift-cmd-4 = 'workspace 4'   # intellij
+ctrl-alt-shift-cmd-5 = 'workspace 5'   # spare
+
+ctrl-alt-shift-cmd-tab = 'workspace-back-and-forth'
+
+# Modes
+ctrl-alt-shift-cmd-m = 'mode move'
+ctrl-alt-shift-cmd-r = 'mode resize'
+
+[mode.move.binding]
+# Nudge focused window within the tree — stays in mode for repeated moves
+h = 'move left'
+j = 'move down'
+k = 'move up'
+l = 'move right'
+# Send focused window to a workspace — one-shot, exits the mode
+1 = ['move-node-to-workspace 1', 'mode main']
+2 = ['move-node-to-workspace 2', 'mode main']
+3 = ['move-node-to-workspace 3', 'mode main']
+4 = ['move-node-to-workspace 4', 'mode main']
+5 = ['move-node-to-workspace 5', 'mode main']
+enter = 'mode main'
+esc = 'mode main'
+
+[mode.resize.binding]
+h = 'resize width -50'
+j = 'resize height +50'
+k = 'resize height -50'
+l = 'resize width +50'
+enter = 'mode main'
+esc = 'mode main'
+
+# --- App -> workspace assignment ---
+# VERIFY app-ids with `aerospace list-apps` once AeroSpace is running (Phase 1).
+[[on-window-detected]]
+if.app-id = 'com.googlecode.iterm2'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.intellij'
+run = 'move-node-to-workspace 4'
+
+# --- Float JetBrains popups/dialogs that fight tiling ---
+# Matcher syntax verified against current AeroSpace docs (if.window-title-regex-substring
+# is valid). Left disabled until Phase 1 testing shows which dialogs need it.
+# [[on-window-detected]]
+# if.app-id = 'com.jetbrains.intellij'
+# if.window-title-regex-substring = 'Search Everywhere'
+# run = 'layout floating'

@@ -1,0 +1,10 @@
+# tmuxinator layout: parallel Claude Code instances (HANDOFF §4.3)
+# Run with: tmuxinator start cc
+name: cc
+root: ~/work
+windows:
+  - claude:
+      layout: tiled
+      panes:
+        - claude            # Claude Code instance 1
+        - claude            # Claude Code instance 2

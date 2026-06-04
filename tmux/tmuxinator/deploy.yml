@@ -1,0 +1,11 @@
+# tmuxinator layout: deployment workflow (HANDOFF §4.3)
+# Run with: tmuxinator start deploy
+name: deploy
+root: ~/work
+windows:
+  - main:
+      layout: main-vertical
+      panes:
+        - deploy:           # the deployment command / shell
+        - logs:             # e.g. stern / kubectl logs -f
+        - kubectl:          # scratch kubectl pane
