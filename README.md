@@ -30,7 +30,7 @@ is Raycast / ⌘Tab / `aerospace` CLI, contingency in `karabiner/`).
 | 1 | AeroSpace (window layer) | ✅ done (2026-06-04) — §5.4 criteria pass; Hyper chords owner-confirmed; workspace assignments live. IntelliJ dialog float rules: add when one annoys (wait-and-see) |
 | 2 | tmux (in-window layer) | ✅ done (2026-06-04) — §4.4 criteria pass: config + plugins load, `deploy` (3 named panes) and `cc` (2 live CC instances, TUI renders correctly) reproduce detached, sessions independent of clients |
 | 3 | In-app layer (Slack / IntelliJ / Chrome) | ✅ done (2026-06-04) — ideavimrc committed + linked; cheatsheets for Slack/IntelliJ/Chrome; 8.5 resolved (Vimium C). Two manual installs pending: IdeaVim plugin, Vimium C extension (install.sh steps 5–6) |
-| 4 | Enthium learning (parallel track) | ⬜ start drills anytime |
+| 4 | Enthium learning (parallel track) | 🔄 started (2026-06-04) — Enthium v14 layer spec'd in `keyboard/KEYMAP.md` (toggle layer; QWERTY stays layer 0); drill protocol + gates in `keyboard/LEARNING.md`. Owner: build/flash in Oryx, then drill daily |
 | 5 | Glue + refinement (Moonlander layers, Raycast) | ⬜ |
 
 Hard sequencing rule: **environment first on QWERTY; Enthium switch last.**
@@ -58,6 +58,7 @@ Hard sequencing rule: **environment first on QWERTY; Enthium switch last.**
 ├── slack/                # shortcuts cheatsheet (nothing to install)
 ├── chrome/               # Vimium C setup + cheatsheet (decision 8.5)
 ├── keyboard/KEYMAP.md    # Moonlander/Enthium layer design (Oryx source of truth)
+├── keyboard/LEARNING.md  # Enthium drill protocol, switch gates, progress log
 ├── karabiner/hyper.json  # OPTIONAL contingency: Caps Lock → Hyper (not installed by default)
 ├── raycast/notes.md      # GUI-held settings, recorded by hand
 └── scripts/install.sh    # idempotent bootstrap
