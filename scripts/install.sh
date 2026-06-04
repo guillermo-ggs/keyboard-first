@@ -81,6 +81,7 @@ link "$REPO_DIR/tmux/tmux.conf"              "$HOME/.tmux.conf"
 link "$REPO_DIR/tmux/tmuxinator/deploy.yml"  "$HOME/.config/tmuxinator/deploy.yml"
 link "$REPO_DIR/tmux/tmuxinator/cc.yml"      "$HOME/.config/tmuxinator/cc.yml"
 link "$REPO_DIR/aerospace/aerospace.toml"    "$HOME/.config/aerospace/aerospace.toml"
+link "$REPO_DIR/intellij/ideavimrc"          "$HOME/.ideavimrc"
 
 # --- Version pin reminder (AeroSpace is pre-1.0) ------------------------------
 AEROSPACE_VERSION="$(brew list --cask --versions aerospace 2>/dev/null || true)"
@@ -98,4 +99,9 @@ Manual steps remaining:
   3. tmux      : start tmux, press prefix (Ctrl-Space) + I to install plugins.
   4. Verify    : `aerospace list-apps` and confirm the bundle IDs in
                  aerospace/aerospace.toml match reality.
+  5. IntelliJ  : Settings > Plugins > Marketplace > install "IdeaVim", restart.
+                 ~/.ideavimrc is already linked; see intellij/CHEATSHEET.md
+                 for the shortcut-conflict handoffs (Ctrl-o/i/r/v -> Vim).
+  6. Chrome    : install "Vimium C" in the work (decisionbrain.com) and
+                 personal (Guillermo) profiles — see chrome/VIMIUM.md.
 EOF

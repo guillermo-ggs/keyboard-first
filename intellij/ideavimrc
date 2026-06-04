@@ -1,0 +1,54 @@
+# IdeaVim — in-app layer for IntelliJ (HANDOFF §6, Phase 3)
+# Symlinked to ~/.ideavimrc by scripts/install.sh
+# Solid starter: sensible defaults + a small leader layer into IDE actions.
+# Find any action ID with :actionlist <pattern> inside the IDE.
+
+let mapleader=" "
+
+" --- Sensible defaults
+set scrolloff=5                 " keep context around the cursor
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set number
+set relativenumber              " relative jumps pair with hjkl + counts
+set clipboard+=unnamed          " yank/paste through the macOS clipboard
+set visualbell                  " flash, don't beep
+set showmode
+
+" Let the IDE do smart line-joins (J merges comments, string concat, etc.)
+set ideajoin
+
+" --- Built-in plugin emulations (no install needed)
+set surround                    " ys / cs / ds — wrap, change, delete pairs
+set commentary                  " gcc / gc<motion> — toggle comments
+set highlightedyank             " flash what was yanked
+
+" --- Navigation (leader = Space)
+nmap <leader>e  <Action>(RecentFiles)
+nmap <leader>ff <Action>(GotoFile)
+nmap <leader>fc <Action>(GotoClass)
+nmap <leader>fs <Action>(GotoSymbol)
+nmap <leader>fa <Action>(GotoAction)
+nmap <leader>/  <Action>(FindInPath)
+nmap <leader>fu <Action>(FindUsages)
+nmap gd <Action>(GotoDeclaration)
+nmap gi <Action>(GotoImplementation)
+nmap gt <Action>(GotoTest)
+
+" --- Refactor / code
+nmap <leader>rn <Action>(RenameElement)
+nmap <leader>rf <Action>(ReformatCode)
+nmap <leader>oi <Action>(OptimizeImports)
+nmap <leader>a  <Action>(ShowIntentionActions)
+
+" --- Errors
+nmap ]d <Action>(GotoNextError)
+nmap [d <Action>(GotoPreviousError)
+nmap <leader>q <Action>(ShowErrorDescription)
+
+" --- Quality of life
+nmap <leader><Esc> :nohlsearch<CR>
+" Reload this file after editing
+nmap <leader>vr <Action>(IdeaVim.ReloadVimRc.reload)
