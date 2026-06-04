@@ -44,6 +44,7 @@ ctrl-alt-shift-cmd-l = 'focus right'
 # Layouts
 ctrl-alt-shift-cmd-slash = 'layout tiles horizontal vertical'
 ctrl-alt-shift-cmd-comma = 'layout accordion horizontal vertical'
+ctrl-alt-shift-cmd-f = 'fullscreen'   # zoom focused window (toggle) — AeroSpace-fullscreen, not macOS-native
 
 # Switch workspace (scheme per decision 8.3 — numbered, iterate as needed)
 ctrl-alt-shift-cmd-1 = 'workspace 1'   # terminal (iTerm2 + tmux)
