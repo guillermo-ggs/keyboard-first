@@ -43,7 +43,7 @@ Hard sequencing rule: **environment first on QWERTY; Enthium switch last.**
 | 8.2 | tmux prefix | **Ctrl-Space** (Moonlander key can emit it later) | 2026-06-04 |
 | 8.6 | AeroSpace mod | **Hyper** (⌃⌥⇧⌘), emitted by **Moonlander firmware only** (owner is almost always on it) — no Karabiner, no system extension. Built-in keyboard fallback: Raycast / ⌘Tab / `aerospace` CLI; `karabiner/hyper.json` kept as opt-in contingency. Hyper contains Shift, so window-move is a `move` mode (Hyper-m), not mod-shift chords. | 2026-06-04 |
 | 8.7 | Dotfiles manager | **Plain symlink script** (`scripts/install.sh`) | 2026-06-04 |
-| 8.3 | Workspace scheme | Numbered 1–5: 1 terminal, 2 chrome, 3 comms/media (slack + obsidian + spotify), 4 intellij, 5 utilities (bitwarden + docker, floating). Mattermost/Claude desktop deliberately unassigned. Monitor pinning: 1/2/4 → Dell (fallback main), 3 → built-in Retina, 5 unpinned. Monitor keys: Hyper-period throws focused *window* to next monitor (pinned workspaces can't be moved — force-assignment is a hard constraint), Hyper-semicolon jumps focus. | 2026-06-04 |
+| 8.3 | Workspace scheme | 1 terminal, 2 work chrome, 4 intellij, 5 utilities (floating) → **Dell**; 3 comms/media (slack + obsidian + spotify), 7 personal chrome → **Retina** (hyper-3/7 picks which shows); 6 tracking chrome → **LG**. Pins use fallback `['x','main']` for undocked. Monitor keys: Hyper-period throws focused *window* to next monitor (pinned workspaces can't move — force-assignment is hard), Hyper-semicolon jumps focus. | 2026-06-04 |
 | 8.8 | tmux persistence | resurrect + continuum **on** — *starting point, iterate* | 2026-06-04 |
 | 8.4 | Home-row mods | **Open** — deferred until Enthium base is fluent (Phase 4/5) |  |
 | 8.5 | Chrome in-page nav | **Open** — resolve in Phase 3 (none vs Vimium C vs Vimari) |  |
@@ -62,6 +62,21 @@ Hard sequencing rule: **environment first on QWERTY; Enthium switch last.**
 
 Repo filenames are unhidden (`tmux/tmux.conf`, not `.tmux.conf`); `install.sh`
 maps them to their dotfile locations.
+
+## Chrome: three instances, three monitors
+
+All Chrome windows share one bundle ID, so routing is title-based (see
+`aerospace.toml` comments for the verified title formats):
+
+- **Tracking** window is a Chrome *named window* (`second chrome` — set via
+  right-click tab strip → "Name window…"; survives Chrome restarts) → ws 6 (LG).
+- **Personal** profile is matched by end-anchor `Guillermo$` (work titles
+  continue with `(decisionbrain.com)`) → ws 7 (Retina).
+- Everything else (work profile, incognito) → ws 2 (Dell).
+
+If the tracking window is ever recreated from scratch: re-name it `second
+chrome`, then `Hyper-m → 6` once. Don't rename the personal profile in a way
+that adds text after the name, or the end-anchor breaks.
 
 ## Operational notes
 
