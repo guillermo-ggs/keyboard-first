@@ -54,6 +54,10 @@ ctrl-alt-shift-cmd-5 = 'workspace 5'   # utilities: bitwarden + docker (floating
 
 ctrl-alt-shift-cmd-tab = 'workspace-back-and-forth'
 
+# Multi-monitor
+ctrl-alt-shift-cmd-period = 'move-workspace-to-monitor --wrap-around next'   # throw focused workspace to next monitor
+ctrl-alt-shift-cmd-semicolon = 'focus-monitor --wrap-around next'            # jump focus to next monitor
+
 # Modes
 ctrl-alt-shift-cmd-m = 'mode move'
 ctrl-alt-shift-cmd-r = 'mode resize'
@@ -80,6 +84,17 @@ k = 'resize height -50'
 l = 'resize width +50'
 enter = 'mode main'
 esc = 'mode main'
+
+# --- Workspace -> monitor pinning (owner-decided 2026-06-04) ---
+# Patterns match monitor names case-insensitively; arrays are fallback order,
+# so undocked (no Dell) everything falls back to the main display.
+# Monitors at decision time: LG ULTRAGEAR, Built-in Retina Display, DELL S2725QS.
+[workspace-to-monitor-force-assignment]
+1 = ['dell', 'main']   # terminal    -> DELL S2725QS
+2 = ['dell', 'main']   # chrome      -> DELL S2725QS
+3 = 'built-in'         # comms/media -> MacBook Retina display
+4 = ['dell', 'main']   # intellij    -> DELL S2725QS
+# 5 (utilities) intentionally unpinned
 
 # --- App -> workspace assignment ---
 # VERIFY app-ids with `aerospace list-apps` once AeroSpace is running (Phase 1).
