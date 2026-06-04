@@ -43,7 +43,7 @@ Hard sequencing rule: **environment first on QWERTY; Enthium switch last.**
 | 8.2 | tmux prefix | **Ctrl-Space** (Moonlander key can emit it later) | 2026-06-04 |
 | 8.6 | AeroSpace mod | **Hyper** (⌃⌥⇧⌘), emitted by **Moonlander firmware only** (owner is almost always on it) — no Karabiner, no system extension. Built-in keyboard fallback: Raycast / ⌘Tab / `aerospace` CLI; `karabiner/hyper.json` kept as opt-in contingency. Hyper contains Shift, so window-move is a `move` mode (Hyper-m), not mod-shift chords. | 2026-06-04 |
 | 8.7 | Dotfiles manager | **Plain symlink script** (`scripts/install.sh`) | 2026-06-04 |
-| 8.3 | Workspace scheme | Numbered 1–5 (1 term, 2 chrome, 3 slack, 4 intellij, 5 spare) — *starting point, iterate* | 2026-06-04 |
+| 8.3 | Workspace scheme | Numbered 1–5: 1 terminal, 2 chrome, 3 comms/media (slack + obsidian + spotify), 4 intellij, 5 utilities (bitwarden + docker, floating). Mattermost/Claude desktop deliberately unassigned. | 2026-06-04 |
 | 8.8 | tmux persistence | resurrect + continuum **on** — *starting point, iterate* | 2026-06-04 |
 | 8.4 | Home-row mods | **Open** — deferred until Enthium base is fluent (Phase 4/5) |  |
 | 8.5 | Chrome in-page nav | **Open** — resolve in Phase 3 (none vs Vimium C vs Vimari) |  |

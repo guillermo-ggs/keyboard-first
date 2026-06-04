@@ -48,9 +48,9 @@ ctrl-alt-shift-cmd-comma = 'layout accordion horizontal vertical'
 # Switch workspace (scheme per decision 8.3 — numbered, iterate as needed)
 ctrl-alt-shift-cmd-1 = 'workspace 1'   # terminal (iTerm2 + tmux)
 ctrl-alt-shift-cmd-2 = 'workspace 2'   # chrome
-ctrl-alt-shift-cmd-3 = 'workspace 3'   # slack
+ctrl-alt-shift-cmd-3 = 'workspace 3'   # comms/media: slack + obsidian + spotify
 ctrl-alt-shift-cmd-4 = 'workspace 4'   # intellij
-ctrl-alt-shift-cmd-5 = 'workspace 5'   # spare
+ctrl-alt-shift-cmd-5 = 'workspace 5'   # utilities: bitwarden + docker (floating)
 
 ctrl-alt-shift-cmd-tab = 'workspace-back-and-forth'
 
@@ -98,6 +98,23 @@ run = 'move-node-to-workspace 3'
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij'
 run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace 3'
+
+# Utility apps: float (exempt from tiling) and keep off the working workspaces
+[[on-window-detected]]
+if.app-id = 'com.bitwarden.desktop'
+run = ['layout floating', 'move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-id = 'com.electron.dockerdesktop'
+run = ['layout floating', 'move-node-to-workspace 5']
 
 # --- Float JetBrains popups/dialogs that fight tiling ---
 # Matcher syntax verified against current AeroSpace docs (if.window-title-regex-substring
