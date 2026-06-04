@@ -55,8 +55,12 @@ ctrl-alt-shift-cmd-5 = 'workspace 5'   # utilities: bitwarden + docker (floating
 ctrl-alt-shift-cmd-tab = 'workspace-back-and-forth'
 
 # Multi-monitor
-ctrl-alt-shift-cmd-period = 'move-workspace-to-monitor --wrap-around next'   # throw focused workspace to next monitor
-ctrl-alt-shift-cmd-semicolon = 'focus-monitor --wrap-around next'            # jump focus to next monitor
+# NOTE: move-workspace-to-monitor is rejected for force-assigned (pinned)
+# workspaces, which is 1-4 — so we move the focused WINDOW across monitors
+# instead (it joins the workspace visible there). Unpinned workspaces can
+# still be moved via CLI: aerospace move-workspace-to-monitor --wrap-around next
+ctrl-alt-shift-cmd-period = 'move-node-to-monitor --wrap-around next'   # throw focused window to next monitor
+ctrl-alt-shift-cmd-semicolon = 'focus-monitor --wrap-around next'       # jump focus to next monitor
 
 # Modes
 ctrl-alt-shift-cmd-m = 'mode move'
