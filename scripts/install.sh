@@ -30,10 +30,22 @@ for f in "${FORMULAE[@]}"; do
   fi
 done
 
+# App bundle a cask would install — lets us skip apps installed outside brew
+cask_app() {
+  case "$1" in
+    aerospace) echo "/Applications/AeroSpace.app" ;;
+    raycast)   echo "/Applications/Raycast.app" ;;
+    *)         echo "" ;;
+  esac
+}
+
 for c in "${CASKS[@]}"; do
   name="${c##*/}"   # brew lists casks without the tap prefix
+  app="$(cask_app "$name")"
   if brew list --cask "$name" >/dev/null 2>&1; then
-    info "$name already installed"
+    info "$name already installed (brew)"
+  elif [ -n "$app" ] && [ -d "$app" ]; then
+    warn "$name already present at $app (installed outside brew) — skipping"
   else
     info "installing $name"
     brew install --cask "$c"

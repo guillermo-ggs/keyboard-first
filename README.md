@@ -27,8 +27,8 @@ is Raycast / ⌘Tab / `aerospace` CLI, contingency in `karabiner/`).
 | Phase | What | Status |
 |-------|------|--------|
 | 0 | Repo scaffold, install script | ✅ done (2026-06-04) |
-| 1 | AeroSpace (window layer) | ⬜ next — add Hyper key to QWERTY Oryx layout + flash, run install.sh, grant Accessibility, verify §5.4 |
-| 2 | tmux (in-window layer) | ⬜ |
+| 1 | AeroSpace (window layer) | 🔶 in progress — Hyper key flashed, install done (2026-06-04); remaining: launch + grant Accessibility, verify §5.4 |
+| 2 | tmux (in-window layer) | 🔶 installed + linked; remaining: tpm plugins (prefix+I), verify §4.4 |
 | 3 | In-app layer (Slack / IntelliJ / Chrome) | ⬜ |
 | 4 | Enthium learning (parallel track) | ⬜ start drills anytime |
 | 5 | Glue + refinement (Moonlander layers, Raycast) | ⬜ |
@@ -65,7 +65,9 @@ maps them to their dotfile locations.
 
 ## Operational notes
 
-- **AeroSpace is pre-1.0**: record the installed version here after Phase 1, and
-  read release notes before `brew upgrade`. Installed: _(pending)_
+- **AeroSpace is pre-1.0**: read release notes before `brew upgrade`.
+  Installed: **0.20.3-Beta** (2026-06-04)
+- Raycast is installed outside Homebrew (self-updates); install.sh detects and
+  skips it.
 - Oryx and Raycast hold state in GUIs — record choices in `keyboard/KEYMAP.md` and
   `raycast/notes.md` as they're made.
