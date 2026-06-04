@@ -12,8 +12,9 @@ Chrome, IntelliJ — minimal mouse. Full spec and runbook: [HANDOFF.md](HANDOFF.
 | In-app | Act inside the focused app | App shortcuts, IdeaVim |
 
 Input surface: ZSA Moonlander layers + a **Hyper** key (⌃⌥⇧⌘), Raycast as
-launcher/fallback. Hyper comes from Caps Lock (Karabiner) on the built-in keyboard
-and a thumb key (Oryx) on the Moonlander.
+launcher/fallback. Hyper is emitted by **Moonlander firmware only** (Oryx thumb
+key) — the built-in keyboard has no Hyper by design (accepted trade-off; fallback
+is Raycast / ⌘Tab / `aerospace` CLI, contingency in `karabiner/`).
 
 ## Quickstart
 
@@ -26,7 +27,7 @@ and a thumb key (Oryx) on the Moonlander.
 | Phase | What | Status |
 |-------|------|--------|
 | 0 | Repo scaffold, install script | ✅ done (2026-06-04) |
-| 1 | AeroSpace (window layer) | ⬜ next — run install.sh, grant Accessibility, verify §5.4 |
+| 1 | AeroSpace (window layer) | ⬜ next — add Hyper key to QWERTY Oryx layout + flash, run install.sh, grant Accessibility, verify §5.4 |
 | 2 | tmux (in-window layer) | ⬜ |
 | 3 | In-app layer (Slack / IntelliJ / Chrome) | ⬜ |
 | 4 | Enthium learning (parallel track) | ⬜ start drills anytime |
@@ -40,7 +41,7 @@ Hard sequencing rule: **environment first on QWERTY; Enthium switch last.**
 |---|----------|------------|------|
 | 8.1 | Terminal emulator | **iTerm2 + tmux** (lowest friction) | 2026-06-04 |
 | 8.2 | tmux prefix | **Ctrl-Space** (Moonlander key can emit it later) | 2026-06-04 |
-| 8.6 | AeroSpace mod | **Hyper** (⌃⌥⇧⌘). Consequence: Hyper contains Shift, so window-move is a `move` mode (Hyper-m), not mod-shift chords. Karabiner becomes required for the built-in keyboard. | 2026-06-04 |
+| 8.6 | AeroSpace mod | **Hyper** (⌃⌥⇧⌘), emitted by **Moonlander firmware only** (owner is almost always on it) — no Karabiner, no system extension. Built-in keyboard fallback: Raycast / ⌘Tab / `aerospace` CLI; `karabiner/hyper.json` kept as opt-in contingency. Hyper contains Shift, so window-move is a `move` mode (Hyper-m), not mod-shift chords. | 2026-06-04 |
 | 8.7 | Dotfiles manager | **Plain symlink script** (`scripts/install.sh`) | 2026-06-04 |
 | 8.3 | Workspace scheme | Numbered 1–5 (1 term, 2 chrome, 3 slack, 4 intellij, 5 spare) — *starting point, iterate* | 2026-06-04 |
 | 8.8 | tmux persistence | resurrect + continuum **on** — *starting point, iterate* | 2026-06-04 |
@@ -54,7 +55,7 @@ Hard sequencing rule: **environment first on QWERTY; Enthium switch last.**
 ├── aerospace/            # window layer config
 ├── tmux/                 # tmux.conf + tmuxinator layouts (deploy, cc)
 ├── keyboard/KEYMAP.md    # Moonlander/Enthium layer design (Oryx source of truth)
-├── karabiner/hyper.json  # Caps Lock → Hyper (hold) / Esc (tap)
+├── karabiner/hyper.json  # OPTIONAL contingency: Caps Lock → Hyper (not installed by default)
 ├── raycast/notes.md      # GUI-held settings, recorded by hand
 └── scripts/install.sh    # idempotent bootstrap
 ```
@@ -66,5 +67,5 @@ maps them to their dotfile locations.
 
 - **AeroSpace is pre-1.0**: record the installed version here after Phase 1, and
   read release notes before `brew upgrade`. Installed: _(pending)_
-- Karabiner/Raycast hold state in GUIs — record choices in `raycast/notes.md` and
-  `keyboard/KEYMAP.md` as they're made.
+- Oryx and Raycast hold state in GUIs — record choices in `keyboard/KEYMAP.md` and
+  `raycast/notes.md` as they're made.

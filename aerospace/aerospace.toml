@@ -1,8 +1,10 @@
 # AeroSpace — window layer (HANDOFF §5)
 #
 # Mod key: Hyper = ctrl-alt-shift-cmd (decision 8.6, resolved 2026-06-04).
-#   - Built-in keyboard emits Hyper via Karabiner: hold Caps Lock (karabiner/hyper.json).
-#   - Moonlander: dedicate a thumb key to Hyper in Oryx (built-in Hyper keycode).
+#   - Emitted by Moonlander firmware only: a thumb key in Oryx (built-in Hyper
+#     keycode, QMK KC_HYPR). No Karabiner — the built-in keyboard has no Hyper;
+#     fallback there is Raycast / Cmd-Tab / the `aerospace` CLI (accepted trade-off).
+#   - Contingency for built-in-keyboard Hyper: karabiner/hyper.json (opt-in).
 #
 # Hyper already contains Shift, so the i3-style "mod-shift-X = move" pattern is
 # impossible. Moving windows lives in a dedicated 'move' mode instead: hyper-m,

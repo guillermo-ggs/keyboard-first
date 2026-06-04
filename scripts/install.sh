@@ -16,7 +16,10 @@ if ! command -v brew >/dev/null 2>&1; then
 fi
 
 FORMULAE=(tmux tmuxinator)
-CASKS=(nikitabobko/tap/aerospace karabiner-elements raycast)
+CASKS=(nikitabobko/tap/aerospace raycast)
+# NOTE: karabiner-elements deliberately NOT installed — Hyper comes from
+# Moonlander firmware (decision 8.6). karabiner/hyper.json is the opt-in
+# contingency for built-in-keyboard Hyper; install + link it manually if needed.
 
 for f in "${FORMULAE[@]}"; do
   if brew list --formula "$f" >/dev/null 2>&1; then
@@ -66,7 +69,6 @@ link "$REPO_DIR/tmux/tmux.conf"              "$HOME/.tmux.conf"
 link "$REPO_DIR/tmux/tmuxinator/deploy.yml"  "$HOME/.config/tmuxinator/deploy.yml"
 link "$REPO_DIR/tmux/tmuxinator/cc.yml"      "$HOME/.config/tmuxinator/cc.yml"
 link "$REPO_DIR/aerospace/aerospace.toml"    "$HOME/.config/aerospace/aerospace.toml"
-link "$REPO_DIR/karabiner/hyper.json"        "$HOME/.config/karabiner/assets/complex_modifications/hyper.json"
 
 # --- Version pin reminder (AeroSpace is pre-1.0) ------------------------------
 AEROSPACE_VERSION="$(brew list --cask --versions aerospace 2>/dev/null || true)"
@@ -76,11 +78,11 @@ AEROSPACE_VERSION="$(brew list --cask --versions aerospace 2>/dev/null || true)"
 cat <<'EOF'
 
 Manual steps remaining:
-  1. AeroSpace : launch it once, grant Accessibility
+  1. Oryx      : add a Hyper key to the CURRENT QWERTY Moonlander layout
+                 (thumb key; Oryx's built-in Hyper = ctrl+alt+shift+cmd) and
+                 flash the board. AeroSpace is unusable without it.
+  2. AeroSpace : launch it once, grant Accessibility
                  (System Settings > Privacy & Security > Accessibility).
-  2. Karabiner : launch Karabiner-Elements, approve its system extension +
-                 input-monitoring prompts, then Complex Modifications >
-                 Add predefined rule > enable "Caps Lock → Hyper".
   3. tmux      : start tmux, press prefix (Ctrl-Space) + I to install plugins.
   4. Verify    : `aerospace list-apps` and confirm the bundle IDs in
                  aerospace/aerospace.toml match reality.

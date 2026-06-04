@@ -14,14 +14,15 @@
 - Environment first: the Enthium switch happens only after Phases 1–3 are stable.
 - Watch thumb load: `R`, space, layer toggles, and Hyper all compete for thumbs.
 
-## Hyper key (decision 8.6 — resolved 2026-06-04)
+## Hyper key (decision 8.6 — resolved 2026-06-04, refined same day)
 
-Hyper = ⌃⌥⇧⌘ — the AeroSpace mod (see `aerospace/aerospace.toml`).
+Hyper = ⌃⌥⇧⌘ — the AeroSpace mod (see `aerospace/aerospace.toml`). Emitted by
+**Moonlander firmware only** — no Karabiner, no system extension.
 
 | Input surface | How Hyper is emitted |
 |---|---|
-| Moonlander | Dedicated thumb key, Oryx built-in Hyper keycode |
-| Built-in laptop keyboard | Hold Caps Lock via Karabiner (`karabiner/hyper.json`); tap = Esc |
+| Moonlander | Dedicated thumb key, Oryx built-in Hyper keycode (QMK `KC_HYPR`). **Add to the current QWERTY layout and flash — Phase 1 prerequisite.** Optional: dual-function tap = Esc. |
+| Built-in laptop keyboard | Not emitted — accepted trade-off (owner is almost always on the Moonlander). Fallbacks: Raycast, ⌘Tab, `aerospace` CLI. Opt-in contingency if ever needed: install Karabiner-Elements + `karabiner/hyper.json`. |
 
 ## Layers (planned — fill in as built)
 
