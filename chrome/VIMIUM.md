@@ -9,13 +9,17 @@ Chosen over classic Vimium (more active, better omnibar) and over "none"
 Web Store → "Vimium C — All by Keyboard" (id `hfjbmagddngcpeloejdejnfgbamkjaeg`).
 Install in **both**:
 
-| Chrome profile | Maps to | Workspace |
+| Browser / profile | Maps to | Workspace |
 |---|---|---|
-| `decisionbrain.com` (Profile 2) | work | 2 (Dell) |
-| `Guillermo` (Profile 3) | personal | 7 (Retina) |
+| Chrome, `decisionbrain.com` profile | work | 2 (Dell) |
+| **Chrome Beta**, personal account | personal | 5 (Retina) |
 
-The tracking window (`second chrome`, ws 6) is a window of one of these
-profiles, so it inherits the extension — nothing extra to install.
+Personal moved from Chrome Profile 3 to Chrome Beta on 2026-06-05 (separate
+app bundle — kills the AeroSpace focus steal, see aerospace.toml GOTCHA).
+Google-account sync brings Vimium C along; verify it after first sign-in.
+
+The tracking window (`second chrome`, ws 7) is a named window of the work
+profile, so it inherits the extension — nothing extra to install.
 
 ## The keys that matter
 

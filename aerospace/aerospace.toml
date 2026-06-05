@@ -60,6 +60,18 @@ ctrl-alt-shift-cmd-f = 'fullscreen'   # zoom focused window (toggle) — AeroSpa
 ctrl-alt-shift-cmd-t = 'layout floating tiling'   # pop window out of the grid (toggle); hyper-hjkl still reaches it by screen position
 
 # Switch workspace (scheme per decision 8.3 — numbered, iterate as needed)
+# GOTCHA (diagnosed 2026-06-05): switching to a chrome-bearing workspace can
+# steal focus to ANOTHER window of the SAME chrome app — e.g. hyper-7 used to
+# flip the Retina from 4 to 5. On activation, Chromium re-keys its MRU window
+# and AeroSpace follows the focus event. Upstream: nikitabobko/AeroSpace#726
+# (open as of 0.20.3-Beta); maintainer-endorsed alternative fix: disable
+# "Displays have separate Spaces" (logout required).
+# Mitigated 2026-06-05 by splitting personal (ws 5) into Chrome Beta — a
+# separate app, so 5<->7 steals are impossible. Work (2) and tracking (7)
+# still share regular Chrome, so hyper-7 with work-chrome MRU flips the Dell
+# to 2 — ACCEPTED residual (owner, 2026-06-05; recover with hyper-tab). If it
+# bites: third browser for tracking, or disable "Displays have separate
+# Spaces". Repro/verify: scripts/aerospace-focus-steal-repro.sh
 ctrl-alt-shift-cmd-1 = 'workspace 1'   # terminal (iTerm2 + tmux)
 ctrl-alt-shift-cmd-2 = 'workspace 2'   # chrome
 ctrl-alt-shift-cmd-3 = 'workspace 3'   # intellij
@@ -135,18 +147,26 @@ esc = 'mode main'
 if.app-id = 'com.googlecode.iterm2'
 run = 'move-node-to-workspace 1'
 
-# Chrome routing — three instances, ORDER MATTERS (first matching rule wins).
+# Chrome routing — ORDER MATTERS (first matching rule wins).
+# Personal browsing moved to Chrome Beta (2026-06-05) so it's a SEPARATE app:
+# kills the focus steal between ws 5 and ws 7 (see GOTCHA above). Work and
+# tracking still share the Chrome app — a 2<->7 steal remains possible.
 # Titles verified live 2026-06-04:
 #   tracking (named window): "second chrome - Google Chrome - Guillermo (decisionbrain.com)"
-#   personal:                "<page> - Google Chrome - Guillermo"          <- ends at name
 #   work:                    "<page> - Google Chrome - Guillermo (decisionbrain.com)"
 # The tracking window is a Chrome named window ("Name window..." on the tab
 # strip) — the name replaces the page title and survives Chrome restarts.
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome.beta'
+run = 'move-node-to-workspace 5'
+
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 if.window-title-regex-substring = '^second chrome - Google Chrome'
 run = 'move-node-to-workspace 7'
 
+# Transitional: not-yet-migrated personal Profile-3 windows of regular Chrome.
+# Remove once the personal profile lives fully in Chrome Beta.
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 if.window-title-regex-substring = 'Google Chrome - Guillermo$'
