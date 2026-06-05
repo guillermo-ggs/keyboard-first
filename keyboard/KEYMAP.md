@@ -1,7 +1,10 @@
 # Moonlander keymap — Enthium + workflow layers
 
 > **Status: DESIGNED, NOT YET FLASHED** (Phase 4 started 2026-06-04). Oryx is a
-> web GUI — an agent cannot drive it. This file is the source of truth: it must
+> web GUI — an agent cannot drive it, and Oryx has **no file import** (verified
+> 2026-06-05 against its API; no Moonlander Enthium layouts or layer templates
+> to fork either). Build by hand using the click-by-click worksheet in
+> [`ORYX-BUILD.md`](ORYX-BUILD.md). This file is the source of truth: it must
 > describe every layer precisely enough that the Oryx build is reproducible by
 > hand. Update it on every keymap change; optionally export the QMK source from
 > Oryx into `keyboard/qmk/` for diffability.
