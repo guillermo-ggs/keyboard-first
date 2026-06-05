@@ -336,6 +336,12 @@ run = 'move-node-to-workspace 4'
 > NOTE on the mod key: `alt` is used above (i3 convention). The Moonlander can emit `alt`
 > trivially from a layer, so window control can live on the nav/window layer. Alternatively
 > use the Hyper key as the AeroSpace mod. (Open decision 8.6.)
+>
+> WARNING (learned 2026-06-05, after 8.6 chose Hyper): do NOT port the `slash`/`comma`
+> bindings above to Hyper — macOS reserves ⌃⌥⇧⌘ + period/comma/slash for sysdiagnose,
+> below the app layer, undisableable. The live config uses Hyper-s/a instead (and
+> Hyper-g for a one-shot 2-row grid via `scripts/aerospace-grid.sh`). See
+> `aerospace/CHEATSHEET.md` for the current key map.
 
 ### 5.3 Multi-monitor
 

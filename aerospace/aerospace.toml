@@ -26,6 +26,13 @@ default-root-container-orientation = 'auto'
 
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
+# exec-and-forget runs commands with a minimal environment; put Homebrew on
+# PATH so scripts can call `aerospace` (bit us 2026-06-05 with hyper-g).
+# NOTE: must sit below all top-level keys — TOML keys after a [table] header
+# belong to that table.
+[exec.env-vars]
+PATH = '/opt/homebrew/bin:${PATH}'
+
 [gaps]
 inner.horizontal = 8
 inner.vertical = 8
@@ -42,9 +49,15 @@ ctrl-alt-shift-cmd-k = 'focus up'
 ctrl-alt-shift-cmd-l = 'focus right'
 
 # Layouts
-ctrl-alt-shift-cmd-slash = 'layout tiles horizontal vertical'
-ctrl-alt-shift-cmd-comma = 'layout accordion horizontal vertical'
+# GOTCHA (diagnosed 2026-06-05): hyper-period/comma/slash are RESERVED by macOS
+# for sysdiagnose (period = capture + white screen flash, comma/slash = variants).
+# Intercepted below the app layer — AeroSpace never sees them, no way to disable
+# (https://github.com/pqrs-org/Karabiner-Elements/issues/1107). Never bind them.
+ctrl-alt-shift-cmd-s = 'layout tiles horizontal vertical'      # Split (was hyper-slash, sysdiagnose-reserved)
+ctrl-alt-shift-cmd-a = 'layout accordion horizontal vertical'  # Accordion (was hyper-comma, sysdiagnose-reserved)
+ctrl-alt-shift-cmd-g = 'exec-and-forget ~/dev/misc/keyboard-first/scripts/aerospace-grid.sh'  # Grid: one-shot 2-row grid (4 -> 2x2) of the focused workspace
 ctrl-alt-shift-cmd-f = 'fullscreen'   # zoom focused window (toggle) — AeroSpace-fullscreen, not macOS-native
+ctrl-alt-shift-cmd-t = 'layout floating tiling'   # pop window out of the grid (toggle); hyper-hjkl still reaches it by screen position
 
 # Switch workspace (scheme per decision 8.3 — numbered, iterate as needed)
 ctrl-alt-shift-cmd-1 = 'workspace 1'   # terminal (iTerm2 + tmux)
@@ -63,7 +76,7 @@ ctrl-alt-shift-cmd-tab = 'workspace-back-and-forth'
 # workspaces, which is 1-4 — so we move the focused WINDOW across monitors
 # instead (it joins the workspace visible there). Unpinned workspaces can
 # still be moved via CLI: aerospace move-workspace-to-monitor --wrap-around next
-ctrl-alt-shift-cmd-period = 'move-node-to-monitor --wrap-around next'   # throw focused window to next monitor
+ctrl-alt-shift-cmd-quote = 'move-node-to-monitor --wrap-around next'    # throw focused window to next monitor (was hyper-period, sysdiagnose-reserved; quote sits next to semicolon)
 ctrl-alt-shift-cmd-semicolon = 'focus-monitor --wrap-around next'       # jump focus to next monitor
 
 # Modes
@@ -76,6 +89,13 @@ h = 'move left'
 j = 'move down'
 k = 'move up'
 l = 'move right'
+# Join with neighbor under a common parent container (opposite orientation,
+# so joining horizontal neighbors stacks them vertically). 4 columns -> 2x2:
+# focus col 2, shift-h (stacks 1+2), focus col 4, shift-h (stacks 3+4).
+shift-h = 'join-with left'
+shift-j = 'join-with down'
+shift-k = 'join-with up'
+shift-l = 'join-with right'
 # Send focused window to a workspace — one-shot, exits the mode
 1 = ['move-node-to-workspace 1', 'mode main']
 2 = ['move-node-to-workspace 2', 'mode main']
@@ -141,9 +161,22 @@ run = 'move-node-to-workspace 2'
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = 'move-node-to-workspace 4'
 
+# IntelliJ routing — two rules, ORDER MATTERS (first match wins).
+# Main project windows are titled "project – file" (en-dash, verified live
+# 2026-06-05 via `aerospace list-windows --all`); dialogs/popups (Settings,
+# Commit, diff viewers, Welcome screen) never are. Only main windows are
+# routed to workspace 3 — dialogs float and stay on the workspace of the
+# instance that spawned them, instead of being yanked back to 3.
+# Caveat: a NEW project window opened from an instance living elsewhere is
+# still routed to 3 (rules can't tell which instance spawned a window).
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij'
+if.window-title-regex-substring = ' – '
 run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.intellij'
+run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
@@ -162,10 +195,3 @@ run = ['layout floating', 'move-node-to-workspace 6']
 if.app-id = 'com.electron.dockerdesktop'
 run = ['layout floating', 'move-node-to-workspace 6']
 
-# --- Float JetBrains popups/dialogs that fight tiling ---
-# Matcher syntax verified against current AeroSpace docs (if.window-title-regex-substring
-# is valid). Left disabled until Phase 1 testing shows which dialogs need it.
-# [[on-window-detected]]
-# if.app-id = 'com.jetbrains.intellij'
-# if.window-title-regex-substring = 'Search Everywhere'
-# run = 'layout floating'

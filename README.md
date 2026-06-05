@@ -43,7 +43,7 @@ Hard sequencing rule: **environment first on QWERTY; Enthium switch last.**
 | 8.2 | tmux prefix | **Ctrl-Space** (Moonlander key can emit it later) | 2026-06-04 |
 | 8.6 | AeroSpace mod | **Hyper** (⌃⌥⇧⌘), emitted by **Moonlander firmware only** (owner is almost always on it) — no Karabiner, no system extension. Built-in keyboard fallback: Raycast / ⌘Tab / `aerospace` CLI; `karabiner/hyper.json` kept as opt-in contingency. Hyper contains Shift, so window-move is a `move` mode (Hyper-m), not mod-shift chords. | 2026-06-04 |
 | 8.7 | Dotfiles manager | **Plain symlink script** (`scripts/install.sh`) | 2026-06-04 |
-| 8.3 | Workspace scheme | 1 terminal, 2 work chrome, 3 intellij, 6 utilities (floating, unpinned) → **Dell**; 4 comms/media (slack + obsidian + spotify), 5 personal chrome → **Retina** (hyper-4/5 picks which shows); 7 tracking chrome → **LG**; 8 scratch pairing (no assigned apps, unpinned — e.g. terminal + intellij side by side). (Renumbered 2026-06-05: 3⇄4, 5⇄6, then 5⇄7; 8 added same day.) Pins use fallback `['x','main']` for undocked. Monitor keys: Hyper-period throws focused *window* to next monitor (pinned workspaces can't move — force-assignment is hard), Hyper-semicolon jumps focus. | 2026-06-04 |
+| 8.3 | Workspace scheme | 1 terminal, 2 work chrome, 3 intellij, 6 utilities (floating, unpinned) → **Dell**; 4 comms/media (slack + obsidian + spotify), 5 personal chrome → **Retina** (hyper-4/5 picks which shows); 7 tracking chrome → **LG**; 8 scratch pairing (no assigned apps, unpinned — e.g. terminal + intellij side by side). (Renumbered 2026-06-05: 3⇄4, 5⇄6, then 5⇄7; 8 added same day.) Pins use fallback `['x','main']` for undocked. Monitor keys: Hyper-quote throws focused *window* to next monitor (pinned workspaces can't move — force-assignment is hard), Hyper-semicolon jumps focus. (Was Hyper-period — ⌃⌥⇧⌘+period/comma/slash are macOS sysdiagnose keychords, intercepted below apps; never bind them. Diagnosed 2026-06-05.) | 2026-06-04 |
 | 8.8 | tmux persistence | resurrect + continuum **on** — *starting point, iterate* | 2026-06-04 |
 | 8.5 | Chrome in-page nav | **Vimium C**, in work + personal profiles (Vimari is Safari-only, so the real choice was Vimium/Vimium C vs none; link hints were the last mouse dependency). Settings export → `chrome/` once customized. | 2026-06-04 |
 | 8.4 | Home-row mods | **Open** — deferred until Enthium base is fluent (Phase 4/5) |  |
@@ -52,8 +52,9 @@ Hard sequencing rule: **environment first on QWERTY; Enthium switch last.**
 
 ```
 ├── HANDOFF.md            # build spec + runbook (read this first)
-├── aerospace/            # window layer config
+├── aerospace/            # window layer config + cheatsheet
 ├── tmux/                 # tmux.conf + tmuxinator layouts (deploy, cc)
+├── scripts/aerospace-grid.sh  # hyper-g: one-shot 2-row grid of focused workspace
 ├── intellij/             # ideavimrc (→ ~/.ideavimrc) + cheatsheet
 ├── slack/                # shortcuts cheatsheet (nothing to install)
 ├── chrome/               # Vimium C setup + cheatsheet (decision 8.5)
