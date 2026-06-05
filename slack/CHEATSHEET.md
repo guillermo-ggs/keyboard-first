@@ -38,5 +38,5 @@ read → next. Leave with `⌘K`.
 
 ## With AeroSpace
 
-Slack lives on workspace 3 (comms, Retina). Flow: `Hyper-3` → `⌘K` → type →
+Slack lives on workspace 4 (comms, Retina). Flow: `Hyper-4` → `⌘K` → type →
 Enter. Two keystrokes from anywhere in the OS to any conversation.

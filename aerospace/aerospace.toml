@@ -8,7 +8,7 @@
 #
 # Hyper already contains Shift, so the i3-style "mod-shift-X = move" pattern is
 # impossible. Moving windows lives in a dedicated 'move' mode instead: hyper-m,
-# then h/j/k/l to nudge, 1-5 to send to a workspace, esc/enter to leave.
+# then h/j/k/l to nudge, 1-8 to send to a workspace, esc/enter to leave.
 #
 # Chords are written out as ctrl-alt-shift-cmd-X on purpose: the key-mapping
 # alias (hyper = 'ctrl-alt-shift-cmd') is NOT supported in 0.20.3-Beta
@@ -49,11 +49,12 @@ ctrl-alt-shift-cmd-f = 'fullscreen'   # zoom focused window (toggle) — AeroSpa
 # Switch workspace (scheme per decision 8.3 — numbered, iterate as needed)
 ctrl-alt-shift-cmd-1 = 'workspace 1'   # terminal (iTerm2 + tmux)
 ctrl-alt-shift-cmd-2 = 'workspace 2'   # chrome
-ctrl-alt-shift-cmd-3 = 'workspace 3'   # comms/media: slack + obsidian + spotify
-ctrl-alt-shift-cmd-4 = 'workspace 4'   # intellij
-ctrl-alt-shift-cmd-5 = 'workspace 5'   # utilities: bitwarden + docker (floating)
-ctrl-alt-shift-cmd-6 = 'workspace 6'   # tracking chrome (LG)
-ctrl-alt-shift-cmd-7 = 'workspace 7'   # personal chrome (retina; toggles with 3)
+ctrl-alt-shift-cmd-3 = 'workspace 3'   # intellij
+ctrl-alt-shift-cmd-4 = 'workspace 4'   # comms/media: slack + obsidian + spotify
+ctrl-alt-shift-cmd-5 = 'workspace 5'   # personal chrome (retina; toggles with 4)
+ctrl-alt-shift-cmd-6 = 'workspace 6'   # utilities: bitwarden + docker (floating)
+ctrl-alt-shift-cmd-7 = 'workspace 7'   # tracking chrome (LG)
+ctrl-alt-shift-cmd-8 = 'workspace 8'   # scratch pairing: no assigned apps (e.g. terminal + intellij side by side)
 
 ctrl-alt-shift-cmd-tab = 'workspace-back-and-forth'
 
@@ -83,6 +84,7 @@ l = 'move right'
 5 = ['move-node-to-workspace 5', 'mode main']
 6 = ['move-node-to-workspace 6', 'mode main']
 7 = ['move-node-to-workspace 7', 'mode main']
+8 = ['move-node-to-workspace 8', 'mode main']
 enter = 'mode main'
 esc = 'mode main'
 
@@ -101,11 +103,11 @@ esc = 'mode main'
 [workspace-to-monitor-force-assignment]
 1 = ['dell', 'main']   # terminal    -> DELL S2725QS
 2 = ['dell', 'main']   # chrome      -> DELL S2725QS
-3 = 'built-in'         # comms/media -> MacBook Retina display
-4 = ['dell', 'main']   # intellij    -> DELL S2725QS
-6 = ['lg', 'main']     # tracking    -> LG ULTRAGEAR
-7 = 'built-in'         # personal    -> MacBook Retina (shares it with 3: hyper-3/hyper-7 picks)
-# 5 (utilities) intentionally unpinned
+3 = ['dell', 'main']   # intellij    -> DELL S2725QS
+4 = 'built-in'         # comms/media -> MacBook Retina display (shared with 5: hyper-4/hyper-5 picks)
+5 = 'built-in'         # personal    -> MacBook Retina (shares it with 4: hyper-4/hyper-5 picks)
+7 = ['lg', 'main']     # tracking    -> LG ULTRAGEAR
+# 6 (utilities) and 8 (scratch pairing) intentionally unpinned
 
 # --- App -> workspace assignment ---
 # VERIFY app-ids with `aerospace list-apps` once AeroSpace is running (Phase 1).
@@ -123,12 +125,12 @@ run = 'move-node-to-workspace 1'
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 if.window-title-regex-substring = '^second chrome - Google Chrome'
-run = 'move-node-to-workspace 6'
+run = 'move-node-to-workspace 7'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 if.window-title-regex-substring = 'Google Chrome - Guillermo$'
-run = 'move-node-to-workspace 7'
+run = 'move-node-to-workspace 5'
 
 # Fallback: work profile + anything else (incl. incognito) -> main work chrome
 [[on-window-detected]]
@@ -137,28 +139,28 @@ run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace 3'
-
-[[on-window-detected]]
-if.app-id = 'com.jetbrains.intellij'
 run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
-if.app-id = 'md.obsidian'
+if.app-id = 'com.jetbrains.intellij'
 run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
 if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace 4'
 
 # Utility apps: float (exempt from tiling) and keep off the working workspaces
 [[on-window-detected]]
 if.app-id = 'com.bitwarden.desktop'
-run = ['layout floating', 'move-node-to-workspace 5']
+run = ['layout floating', 'move-node-to-workspace 6']
 
 [[on-window-detected]]
 if.app-id = 'com.electron.dockerdesktop'
-run = ['layout floating', 'move-node-to-workspace 5']
+run = ['layout floating', 'move-node-to-workspace 6']
 
 # --- Float JetBrains popups/dialogs that fight tiling ---
 # Matcher syntax verified against current AeroSpace docs (if.window-title-regex-substring
