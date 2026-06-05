@@ -1,7 +1,8 @@
 # Oryx build worksheet — Enthium layer (Phase 4)
 
 > Derived from `KEYMAP.md` (the source of truth — if they disagree, KEYMAP.md
-> wins and this file is stale). One sitting, ~15 min, ~34 assignments.
+> wins and this file is stale). One sitting, ~20 min, ~42 assignments
+> (Enthium layer + layer-0 thumb rework per the thumb cluster plan).
 >
 > Every key below is identified by its **layer-0 QWERTY legend**: "`f` →
 > assign `e`" means *click the physical key currently showing `f` and give it
@@ -12,9 +13,10 @@
 ## 0. Prep (still on layer 0)
 
 - [ ] Open the layout in Oryx ([configure.zsa.io](https://configure.zsa.io)), logged in.
-- [ ] **Record current layer-0 thumb + outer-column assignments into
-      `KEYMAP.md`** (open item there: "Exact current layer-0 thumb/outer-key
-      assignments are GUI state in Oryx"). Do it now while you're looking at them.
+- [ ] **Record current layer-0 outer-column assignments into `KEYMAP.md`**
+      (open item there). For the thumb keys, note what each currently holds —
+      §5 below reworks them to the designed plan, and anything displaced may
+      need a new home.
 - [ ] Note which key will become the toggle (suggested: **top-right outer
       key** — low-value real estate) and what it currently holds. If it holds
       something you use, pick another spot.
@@ -87,12 +89,30 @@ Bottom row (5):
 - [ ] `.` → `f`
 - [ ] `/` → `v`
 
-## 5. Thumbs
+## 5. Thumbs (per KEYMAP.md "Thumb cluster plan", 2026-06-05)
 
-- [ ] **Right thumb, easiest reach (big red)** → `r`
-- [ ] Left thumb Space: leave **transparent** (inherits layer-0 Space).
-- [ ] Everything else on the thumb clusters (Hyper, Enter, Backspace, layer
-      keys): leave **transparent**.
+Key names: **big red** piano key + small keys **s1/s2/s3**, numbered from
+nearest the red key. Owner comfort: s1 > s2 > red ≈ s3 — reds get only
+discrete/rare presses.
+
+**Layer 0 rework** (switch back to layer 0; adjust anything that differs —
+the previously flashed thumb state was never recorded):
+
+- [ ] L s1 → `Space`
+- [ ] L s2 → dual-function: **hold = Hyper**, **tap = Esc**
+- [ ] L red → `Ctrl-Space` (single keycode with Ctrl modifier — tmux prefix; *tentative*)
+- [ ] L s3 → leave as-is (spare)
+- [ ] R s1 → `Enter`
+- [ ] R s2 → `Backspace`
+- [ ] R red → `Enter` (duplicate on this layer; becomes the *only* Enter on Enthium; *tentative*)
+- [ ] R s3 → leave as-is (spare; `Del` suggested)
+- [ ] Anything displaced by the above: note it + its new home in `KEYMAP.md`.
+
+**Enthium layer:**
+
+- [ ] **R s1** → `r` — the only thumb assignment on this layer.
+- [ ] Every other thumb key (incl. L s1 Space, Hyper, Enter, Backspace):
+      leave **transparent** so layer-0 fixes propagate.
 
 ## 6. Visual check before flashing
 
@@ -102,10 +122,13 @@ Layer 1 should read, left→right, exactly:
       q y o u =   x l d p z
     b c i a e -   k h t n s w
       ' , . ; /   j m g f v
-            r  ← right thumb (big red)
+            r  ← right thumb s1
 ```
 
 Number row, mods, and all thumb keys except `r`: transparent.
+
+Layer 0 thumbs should read: L s1 `Space`, L s2 `Hyper`/`Esc`, L red
+`Ctrl-Space`, R s1 `Enter`, R s2 `Backspace`, R red `Enter`.
 
 ## 7. Flash + verify
 
