@@ -59,6 +59,7 @@ ctrl-alt-shift-cmd-g = 'exec-and-forget ~/dev/misc/keyboard-first/scripts/aerosp
 ctrl-alt-shift-cmd-f = 'fullscreen'   # zoom focused window (toggle) — AeroSpace-fullscreen, not macOS-native
 ctrl-alt-shift-cmd-t = 'layout floating tiling'   # pop window out of the grid (toggle); hyper-hjkl still reaches it by screen position
 ctrl-alt-shift-cmd-w = 'close'   # close focused window — graceful per-app close (IntelliJ: Close Project, Chrome: close window); last window left open, app keeps running
+ctrl-alt-shift-cmd-b = 'balance-sizes'   # Balance: equalize all windows on the focused workspace — fix skewed tiles after manual resizes (hyper-r)
 
 # Switch workspace (scheme per decision 8.3 — numbered, iterate as needed)
 # GOTCHA (diagnosed 2026-06-05): switching to a chrome-bearing workspace can
