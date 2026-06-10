@@ -144,9 +144,16 @@ esc = 'mode main'
 
 # --- App -> workspace assignment ---
 # VERIFY app-ids with `aerospace list-apps` once AeroSpace is running (Phase 1).
+# Force-tile guard (issue #2, diagnosed 2026-06-10): AeroSpace's one-shot dialog
+# heuristic sometimes misclassifies half-initialized windows (e.g. a tab dragged
+# out of Chrome) as dialogs and floats them permanently — the window keeps its
+# frame, ignores the grid, and looks "stuck" (live evidence: the work Chrome
+# window found floating on ws 2). Every rule that routes a window we always
+# want tiled starts with 'layout tiling' to fix it at the source.
+# 'move-node-to-workspace' must stay the LAST command in each run list.
 [[on-window-detected]]
 if.app-id = 'com.googlecode.iterm2'
-run = 'move-node-to-workspace 1'
+run = ['layout tiling', 'move-node-to-workspace 1']
 
 # Chrome routing — ORDER MATTERS (first matching rule wins).
 # Personal browsing moved to Chrome Beta (2026-06-05) so it's a SEPARATE app:
@@ -159,19 +166,19 @@ run = 'move-node-to-workspace 1'
 # strip) — the name replaces the page title and survives Chrome restarts.
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome.beta'
-run = 'move-node-to-workspace 5'
+run = ['layout tiling', 'move-node-to-workspace 5']
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 if.window-title-regex-substring = '^second chrome - Google Chrome'
-run = 'move-node-to-workspace 7'
+run = ['layout tiling', 'move-node-to-workspace 7']
 
 # Transitional: not-yet-migrated personal Profile-3 windows of regular Chrome.
 # Remove once the personal profile lives fully in Chrome Beta.
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 if.window-title-regex-substring = 'Google Chrome - Guillermo$'
-run = 'move-node-to-workspace 5'
+run = ['layout tiling', 'move-node-to-workspace 5']
 
 # Guard: Picture-in-Picture — float it and leave it where it was opened. The
 # fallback below has no title condition, so it was yanking PiP to ws 2 the
@@ -186,11 +193,11 @@ run = 'layout floating'
 # Fallback: work profile + anything else (incl. incognito) -> main work chrome
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 2'
+run = ['layout tiling', 'move-node-to-workspace 2']
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace 4'
+run = ['layout tiling', 'move-node-to-workspace 4']
 
 # IntelliJ routing — two rules, ORDER MATTERS (first match wins).
 # Main project windows are titled "project – file" (en-dash, verified live
@@ -203,7 +210,7 @@ run = 'move-node-to-workspace 4'
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij'
 if.window-title-regex-substring = ' – '
-run = 'move-node-to-workspace 3'
+run = ['layout tiling', 'move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij'
@@ -211,11 +218,11 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = 'move-node-to-workspace 4'
+run = ['layout tiling', 'move-node-to-workspace 4']
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace 4'
+run = ['layout tiling', 'move-node-to-workspace 4']
 
 # Utility apps: float (exempt from tiling) and keep off the working workspaces
 [[on-window-detected]]
