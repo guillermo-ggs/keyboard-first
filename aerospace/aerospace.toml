@@ -8,7 +8,7 @@
 #
 # Hyper already contains Shift, so the i3-style "mod-shift-X = move" pattern is
 # impossible. Moving windows lives in a dedicated 'move' mode instead: hyper-m,
-# then h/j/k/l to nudge, 1-8 to send to a workspace, esc/enter to leave.
+# then h/j/k/l to nudge, 1-9 to send to a workspace, esc/enter to leave.
 #
 # Chords are written out as ctrl-alt-shift-cmd-X on purpose: the key-mapping
 # alias (hyper = 'ctrl-alt-shift-cmd') is NOT supported in 0.20.3-Beta
@@ -82,6 +82,7 @@ ctrl-alt-shift-cmd-5 = 'workspace 5'   # personal chrome (retina; toggles with 4
 ctrl-alt-shift-cmd-6 = 'workspace 6'   # utilities: bitwarden + docker (floating)
 ctrl-alt-shift-cmd-7 = 'workspace 7'   # tracking chrome (LG)
 ctrl-alt-shift-cmd-8 = 'workspace 8'   # scratch pairing: no assigned apps (e.g. terminal + intellij side by side)
+ctrl-alt-shift-cmd-9 = 'workspace 9'   # comms/AI: claude + mattermost (LG)
 
 ctrl-alt-shift-cmd-tab = 'workspace-back-and-forth'
 
@@ -119,6 +120,7 @@ shift-l = 'join-with right'
 6 = ['move-node-to-workspace 6', 'mode main']
 7 = ['move-node-to-workspace 7', 'mode main']
 8 = ['move-node-to-workspace 8', 'mode main']
+9 = ['move-node-to-workspace 9', 'mode main']
 enter = 'mode main'
 esc = 'mode main'
 
@@ -141,6 +143,7 @@ esc = 'mode main'
 4 = 'built-in'         # comms/media -> MacBook Retina display (shared with 5: hyper-4/hyper-5 picks)
 5 = 'built-in'         # personal    -> MacBook Retina (shares it with 4: hyper-4/hyper-5 picks)
 7 = ['lg', 'main']     # tracking    -> LG ULTRAGEAR
+9 = ['lg', 'main']     # comms/AI    -> LG ULTRAGEAR
 # 6 (utilities) and 8 (scratch pairing) intentionally unpinned
 
 # --- App -> workspace assignment ---
@@ -233,4 +236,14 @@ run = ['layout floating', 'move-node-to-workspace 6']
 [[on-window-detected]]
 if.app-id = 'com.electron.dockerdesktop'
 run = ['layout floating', 'move-node-to-workspace 6']
+
+# Comms/AI -> workspace 9 (LG). Bundle IDs verified live 2026-06-10 via
+# `aerospace list-windows` — Mattermost's really has no reverse-DNS prefix.
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = ['layout tiling', 'move-node-to-workspace 9']
+
+[[on-window-detected]]
+if.app-id = 'Mattermost.Desktop'
+run = ['layout tiling', 'move-node-to-workspace 9']
 
