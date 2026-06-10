@@ -173,6 +173,16 @@ if.app-id = 'com.google.Chrome'
 if.window-title-regex-substring = 'Google Chrome - Guillermo$'
 run = 'move-node-to-workspace 5'
 
+# Guard: Picture-in-Picture — float it and leave it where it was opened. The
+# fallback below has no title condition, so it was yanking PiP to ws 2 the
+# moment it opened. Must sit ABOVE the fallback (first match wins). Also a
+# prerequisite for the force-tile guard (issue #2): an unguarded PiP would be
+# tiled into the ws 2 grid.
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+if.window-title-regex-substring = '^Picture in Picture$'
+run = 'layout floating'
+
 # Fallback: work profile + anything else (incl. incognito) -> main work chrome
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
